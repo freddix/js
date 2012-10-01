@@ -1,0 +1,48 @@
+diff -aurN js-1.8.5.orig/js/src/config/Makefile.in js-1.8.5/js/src/config/Makefile.in
+--- js-1.8.5.orig/js/src/config/Makefile.in	2012-07-02 09:15:27.645190595 +0200
++++ js-1.8.5/js/src/config/Makefile.in	2012-07-02 09:18:18.045060338 +0200
+@@ -67,7 +67,7 @@
+ endif
+ 
+ ifdef GNU_CC
+-MODULE_OPTIMIZE_FLAGS = -O3
++MODULE_OPTIMIZE_FLAGS = -O2
+ endif
+ 
+ ifndef COMPILER_DEPEND
+diff -aurN js-1.8.5.orig/js/src/config/mkdepend/Makefile.in js-1.8.5/js/src/config/mkdepend/Makefile.in
+--- js-1.8.5.orig/js/src/config/mkdepend/Makefile.in	2012-07-02 09:15:27.644190607 +0200
++++ js-1.8.5/js/src/config/mkdepend/Makefile.in	2012-07-02 09:18:04.621228072 +0200
+@@ -47,7 +47,7 @@
+ MODULE		 = mkdepend
+ HOST_PROGRAM	 = mkdepend$(BIN_SUFFIX)
+ ifdef GNU_CC
+-MODULE_OPTIMIZE_FLAGS = -O3
++MODULE_OPTIMIZE_FLAGS = -O2
+ else
+ ifeq ($(OS_ARCH),SunOS)
+ MODULE_OPTIMIZE_FLAGS = -fast
+diff -aurN js-1.8.5.orig/js/src/configure.in js-1.8.5/js/src/configure.in
+--- js-1.8.5.orig/js/src/configure.in	2012-07-02 09:15:27.644190607 +0200
++++ js-1.8.5/js/src/configure.in	2012-07-02 09:17:47.471429634 +0200
+@@ -1887,7 +1887,7 @@
+ *-linux*|*-kfreebsd*-gnu|*-gnu*)
+     HOST_CFLAGS="$HOST_CFLAGS -DXP_UNIX"
+     HOST_NSPR_MDCPUCFG='\"md/_linux.cfg\"'
+-    HOST_OPTIMIZE_FLAGS="${HOST_OPTIMIZE_FLAGS=-O3}"
++    HOST_OPTIMIZE_FLAGS="${HOST_OPTIMIZE_FLAGS=-O2}"
+     ;;
+ 
+ *os2*)
+diff -aurN js-1.8.5.orig/js/src/Makefile.in js-1.8.5/js/src/Makefile.in
+--- js-1.8.5.orig/js/src/Makefile.in	2012-07-02 09:15:27.599191170 +0200
++++ js-1.8.5/js/src/Makefile.in	2012-07-02 09:18:39.694789359 +0200
+@@ -95,7 +95,7 @@
+ endif
+ else # not INTEL_CXX
+ 
+-MODULE_OPTIMIZE_FLAGS = -O3 -fstrict-aliasing
++MODULE_OPTIMIZE_FLAGS = -O2 -fstrict-aliasing
+ 
+ # We normally want -fomit-frame-pointer, but we want an explicit
+ # -fno-omit-frame-pointer if we're using a sampling profiler.
