@@ -1,11 +1,12 @@
 Summary:	JavaScript interpreter and libraries
 Name:		js
-Version:	17.0.0
+Version:	24.2.0
 Release:	1
 License:	MPL 1.1 or GPL v2+ or LGPL v2.1+
 Group:		Libraries
-Source0:	http://ftp.mozilla.org/pub/mozilla.org/js/mozjs%{version}.tar.gz
-# Source0-md5:	20b6f8f1140ef6e47daa3b16965c9202
+Source0:	http://ftp.mozilla.org/pub/mozilla.org/js/mozjs-%{version}.tar.bz2
+# Source0-md5:	5db79c10e049a2dc117a6e6a3bc78a8e
+Patch0:		%{name}-virtualenv.patch
 URL:		https://developer.mozilla.org/En/SpiderMonkey/
 BuildRequires:	libstdc++-devel
 BuildRequires:	nspr-devel >= 4.7.0
@@ -33,7 +34,11 @@ Requires:	libstdc++-devel
 Header files for JavaScript reference library.
 
 %prep
-%setup -qn mozjs%{version}
+%setup -qn mozjs-%{version}
+cd js/src
+%patch0 -p0
+
+%{__rm} -r editline
 
 %build
 cd js/src
@@ -62,12 +67,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc js/src/README.html
-%attr(755,root,root) %{_bindir}/js17
-%attr(755,root,root) %{_libdir}/libmozjs-17.0.so
+%attr(755,root,root) %{_bindir}/js24
+%attr(755,root,root) %{_libdir}/libmozjs-24.so
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/js17-config
-%{_includedir}/js-17.0
-%{_pkgconfigdir}/mozjs-17.0.pc
+%attr(755,root,root) %{_bindir}/js24-config
+%{_includedir}/mozjs-24
+%{_pkgconfigdir}/mozjs-24.pc
 
